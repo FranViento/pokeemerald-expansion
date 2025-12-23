@@ -800,7 +800,7 @@ void ItemUseOutOfBattle_Berry(u8 taskId)
 
 static void ItemUseOnFieldCB_Berry(u8 taskId)
 {
-    if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+    if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL)
     {
         RemoveBagItem(gSpecialVar_ItemId, 1);
     }
@@ -960,7 +960,7 @@ static void UseTMHM(u8 taskId)
 
 static void RemoveUsedItem(void)
 {
-    if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+    if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL)
     {
         RemoveBagItem(gSpecialVar_ItemId, 1);
     }
@@ -1112,7 +1112,7 @@ static void ItemUseOnFieldCB_EscapeRope(u8 taskId)
 {
     Overworld_ResetStateAfterDigEscRope();
 
-    if (I_KEY_ESCAPE_ROPE < GEN_8 && gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+    if (I_KEY_ESCAPE_ROPE < GEN_8 && gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL)
     {
         RemoveBagItem(gSpecialVar_ItemId, 1);
     }
@@ -1183,7 +1183,7 @@ void ItemUseInBattle_PokeBall(u8 taskId)
     {
     case BALL_THROW_ABLE:
     default:
-        if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+        if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL)
         {
             RemoveBagItem(gSpecialVar_ItemId, 1);
         }
@@ -1494,7 +1494,7 @@ static void ItemUseOnFieldCB_Honey(u8 taskId)
 {
     Overworld_ResetStateAfterDigEscRope();
 
-    if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+    if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL)
     {
         RemoveBagItem(gSpecialVar_ItemId, 1);
     }

@@ -15061,13 +15061,14 @@ const struct Item gItemsInfo[] =
     // Unlimited Candy
     [ITEM_UNLIMITED_CANDY] =
     {
-        .name = ITEM_NAME("Unlimited Candy"),
+        .name = ITEM_NAME("Caramelo Ilimitado"),
         .pluralName = ITEM_PLURAL_NAME("Unlimited Candies"),
         .price = 10000, // igual que Rare Candy
         .description = COMPOUND_STRING(
-            "Raises the level\n"
-            "of a Pokémon by\n"
-            "one. Infinite use!"),
+            "Aumenta el nivel de\n"
+            "un Pokémon al uso.\n"
+            "¡Es infinitio!"),
+        .importance = 1,
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_LEVEL_UP_ITEM,
         .type = ITEM_USE_PARTY_MENU,
@@ -15076,6 +15077,23 @@ const struct Item gItemsInfo[] =
         .flingPower = 30,
         .iconPic = gItemIcon_RareCandy, // reutilizamos el ícono
         .iconPalette = gItemIconPalette_RareCandy,
+    },
+
+    [ITEM_UNLIMITED_BALL] =
+    {
+        .name = ITEM_NAME("P.Ball Ilimitada"),
+        .price = 200,
+        .description = COMPOUND_STRING(
+            "Con esto capturas\n"
+            "los bichos salvajes\n"
+            "su papa."),
+        .importance = 1,
+        .pocket = POCKET_POKE_BALLS,
+        .type = ITEM_USE_BAG_MENU,
+        .battleUsage = EFFECT_ITEM_THROW_BALL,
+        .secondaryId = BALL_POKE,
+        .iconPic = gItemIcon_PokeBall,
+        .iconPalette = gItemIconPalette_PokeBall,
     },
 };
 

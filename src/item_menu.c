@@ -2498,7 +2498,7 @@ static void CB2_ApprenticeExitBagMenu(void)
 
 static void ItemMenu_GiveFavorLady(u8 taskId)
 {
-    if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+    if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL)
         RemoveBagItem(gSpecialVar_ItemId, 1);
         
     gSpecialVar_Result = TRUE;

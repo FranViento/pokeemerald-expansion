@@ -3424,7 +3424,7 @@ static void CB2_GiveHoldItem(void)
         // Give mail
         else if (ItemIsMail(gSpecialVar_ItemId))
         {
-            if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+            if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL)
                 RemoveBagItem(gSpecialVar_ItemId, 1);
             GiveItemToMon(&gPlayerParty[gPartyMenu.slotId], gSpecialVar_ItemId);
             CB2_WriteMailToGiveMon();
@@ -3474,7 +3474,7 @@ static void Task_HandleSwitchItemsYesNoInput(u8 taskId)
     switch (Menu_ProcessInputNoWrapClearOnChoose())
     {
     case 0: // Yes, switch items
-    if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+    if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL)
             RemoveBagItem(gSpecialVar_ItemId, 1);
 
         // No room to return held item to bag
@@ -4791,7 +4791,7 @@ void ItemUseCB_BattleScript(u8 taskId, TaskFunc task)
         gBattleStruct->itemPartyIndex[gBattlerInMenuId] = GetPartyIdFromBattleSlot(gPartyMenu.slotId);
         gPartyMenuUseExitCallback = TRUE;
         PlaySE(SE_SELECT);
-        if (!IsItemFlute(gSpecialVar_ItemId) && gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+        if (!IsItemFlute(gSpecialVar_ItemId) && gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL)
             RemoveBagItem(gSpecialVar_ItemId, 1);
         ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = task;
@@ -4955,7 +4955,7 @@ void Task_AbilityCapsule(u8 taskId)
         break;
     case 5:
         SetMonData(&gPlayerParty[tMonId], MON_DATA_ABILITY_NUM, &tAbilityNum);
-        if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+        if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL)
             RemoveBagItem(gSpecialVar_ItemId, 1);
         gTasks[taskId].func = Task_ClosePartyMenu;
         break;
@@ -5043,7 +5043,7 @@ void Task_AbilityPatch(u8 taskId)
         break;
     case 5:
         SetMonData(&gPlayerParty[tMonId], MON_DATA_ABILITY_NUM, &tAbilityNum);
-        if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+        if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL)
             RemoveBagItem(gSpecialVar_ItemId, 1);
         gTasks[taskId].func = Task_ClosePartyMenu;
         break;
@@ -5145,7 +5145,7 @@ void Task_Mint(u8 taskId)
     case 5:
         SetMonData(&gPlayerParty[tMonId], MON_DATA_HIDDEN_NATURE, &tNewNature);
         CalculateMonStats(&gPlayerParty[tMonId]);
-        if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+        if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL)
             RemoveBagItem(gSpecialVar_ItemId, 1);
         gTasks[taskId].func = Task_ClosePartyMenu;
         break;
@@ -5401,7 +5401,7 @@ static void TryUseItemOnMove(u8 taskId)
             gBattleStruct->itemPartyIndex[gBattlerInMenuId] = GetPartyIdFromBattleSlot(gPartyMenu.slotId);
             gBattleStruct->itemMoveIndex[gBattlerInMenuId] = ptr->data1;
             gPartyMenuUseExitCallback = TRUE;
-            if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+            if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL)
                 RemoveBagItem(gSpecialVar_ItemId, 1);
             ScheduleBgCopyTilemapToVram(2);
             gTasks[taskId].func = Task_ClosePartyMenuAfterText;
@@ -5781,7 +5781,7 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
         if (targetSpecies != SPECIES_NONE)
         {
             GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, &canStopEvo, DO_EVO);
-            if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+            if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL)
                 RemoveBagItem(gSpecialVar_ItemId, 1);
             FreePartyPointers();
             gCB2_AfterEvolution = gPartyMenu.exitCallback;
@@ -5801,7 +5801,7 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
         sFinalLevel = GetMonData(mon, MON_DATA_LEVEL, NULL);
         gPartyMenuUseExitCallback = TRUE;
         UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);
-        if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+        if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL)
             RemoveBagItem(gSpecialVar_ItemId, 1);
         GetMonNickname(mon, gStringVar1);
         if (sFinalLevel > sInitialLevel)
@@ -6063,7 +6063,7 @@ void Task_DynamaxCandy(u8 taskId)
     case 3:
         tDynamaxLevel++;
         SetMonData(&gPlayerParty[tMonId], MON_DATA_DYNAMAX_LEVEL, &tDynamaxLevel);
-        if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+        if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL)
             RemoveBagItem(gSpecialVar_ItemId, 1);
         gTasks[taskId].func = Task_ClosePartyMenu;
         break;
@@ -6148,7 +6148,7 @@ static void Task_SacredAshLoop(u8 taskId)
             else
             {
                 gPartyMenuUseExitCallback = TRUE;
-                if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+                if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL)
                     RemoveBagItem(gSpecialVar_ItemId, 1);
             }
             gTasks[taskId].func = Task_ClosePartyMenuAfterText;
@@ -6187,7 +6187,7 @@ void ItemUseCB_EvolutionStone(u8 taskId, TaskFunc task)
     }
     else
     {
-        if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && GetItemPocket(gSpecialVar_ItemId) != POCKET_KEY_ITEMS)
+        if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL && GetItemPocket(gSpecialVar_ItemId) != POCKET_KEY_ITEMS)
             RemoveBagItem(gSpecialVar_ItemId, 1);
         FreePartyPointers();
     }
@@ -6803,7 +6803,7 @@ void ItemUseCB_FormChange_ConsumedOnUse(u8 taskId, TaskFunc task)
 {
     if (TryItemUseFormChange(taskId, task))
     {
-        if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+        if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY && gSpecialVar_ItemId != ITEM_UNLIMITED_BALL)
             RemoveBagItem(gSpecialVar_ItemId, 1);
     }
 }

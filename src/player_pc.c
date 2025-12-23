@@ -239,6 +239,7 @@ static const u16 sNewGamePCItems[][2] =
     { ITEM_POKEMON_BOX_LINK, 1 },
     { ITEM_RARE_CANDY, 999 },
     { ITEM_UNLIMITED_CANDY, 1 },
+    { ITEM_UNLIMITED_BALL, 1 },
     { ITEM_NONE, 0 }, // marca el fin de la lista
 };
 

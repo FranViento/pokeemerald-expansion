@@ -541,7 +541,8 @@ void QuizLadySetCustomQuestion(void)
 
 void QuizLadyTakePrizeForCustomQuiz(void)
 {
-    RemoveBagItem(gSpecialVar_ItemId, 1);
+    if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+        RemoveBagItem(gSpecialVar_ItemId, 1);
 }
 
 void QuizLadyRecordCustomQuizData(void)

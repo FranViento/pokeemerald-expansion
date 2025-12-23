@@ -238,8 +238,10 @@ static const u16 sNewGamePCItems[][2] =
     { ITEM_POKE_BALL, 999 },
     { ITEM_POKEMON_BOX_LINK, 1 },
     { ITEM_RARE_CANDY, 999 },
-    { ITEM_NONE, 0 },
+    { ITEM_UNLIMITED_CANDY, 1 },
+    { ITEM_NONE, 0 }, // marca el fin de la lista
 };
+
 
 const struct MenuAction gMailboxMailOptions[] =
 {

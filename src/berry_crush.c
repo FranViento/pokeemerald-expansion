@@ -1039,7 +1039,7 @@ static void GetBerryFromBag(void)
 {
     if (gSpecialVar_ItemId < FIRST_BERRY_INDEX || gSpecialVar_ItemId > LAST_BERRY_INDEX + 1)
         gSpecialVar_ItemId = FIRST_BERRY_INDEX;
-    else
+    else if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
         RemoveBagItem(gSpecialVar_ItemId, 1);
 
     sGame->players[sGame->localId].berryId = gSpecialVar_ItemId - FIRST_BERRY_INDEX;

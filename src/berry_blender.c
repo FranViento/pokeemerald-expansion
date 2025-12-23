@@ -3562,7 +3562,9 @@ static bool8 PrintBlendingResults(void)
         CreateTask(Task_PlayPokeblockFanfare, 6);
         IncrementDailyBerryBlender();
 
-        RemoveBagItem(gSpecialVar_ItemId, 1);
+        if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+            RemoveBagItem(gSpecialVar_ItemId, 1);
+            
         AddPokeblock(&pokeblock);
 
         sBerryBlender->textState = 0;

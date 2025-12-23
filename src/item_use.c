@@ -800,11 +800,16 @@ void ItemUseOutOfBattle_Berry(u8 taskId)
 
 static void ItemUseOnFieldCB_Berry(u8 taskId)
 {
-    RemoveBagItem(gSpecialVar_ItemId, 1);
+    if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+    {
+        RemoveBagItem(gSpecialVar_ItemId, 1);
+    }
+
     LockPlayerFieldControls();
     ScriptContext_SetupScript(BerryTree_EventScript_ItemUsePlantBerry);
     DestroyTask(taskId);
 }
+
 
 void ItemUseOutOfBattle_WailmerPail(u8 taskId)
 {
@@ -955,9 +960,14 @@ static void UseTMHM(u8 taskId)
 
 static void RemoveUsedItem(void)
 {
-    RemoveBagItem(gSpecialVar_ItemId, 1);
+    if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+    {
+        RemoveBagItem(gSpecialVar_ItemId, 1);
+    }
+
     CopyItemName(gSpecialVar_ItemId, gStringVar2);
     StringExpandPlaceholders(gStringVar4, gText_PlayerUsedVar2);
+
     if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
     {
         UpdatePocketItemList(GetItemPocket(gSpecialVar_ItemId));
@@ -969,6 +979,7 @@ static void RemoveUsedItem(void)
         UpdatePyramidBagCursorPos();
     }
 }
+
 
 void ItemUseOutOfBattle_Repel(u8 taskId)
 {
@@ -1100,14 +1111,18 @@ void Task_UseDigEscapeRopeOnField(u8 taskId)
 static void ItemUseOnFieldCB_EscapeRope(u8 taskId)
 {
     Overworld_ResetStateAfterDigEscRope();
-    if (I_KEY_ESCAPE_ROPE < GEN_8)
+
+    if (I_KEY_ESCAPE_ROPE < GEN_8 && gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+    {
         RemoveBagItem(gSpecialVar_ItemId, 1);
+    }
 
     CopyItemName(gSpecialVar_ItemId, gStringVar2);
     StringExpandPlaceholders(gStringVar4, gText_PlayerUsedVar2);
     gTasks[taskId].data[0] = 0;
     DisplayItemMessageOnField(taskId, gStringVar4, Task_UseDigEscapeRopeOnField);
 }
+
 
 bool8 CanUseDigOrEscapeRopeOnCurMap(void)
 {
@@ -1168,30 +1183,38 @@ void ItemUseInBattle_PokeBall(u8 taskId)
     {
     case BALL_THROW_ABLE:
     default:
-        RemoveBagItem(gSpecialVar_ItemId, 1);
+        if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+        {
+            RemoveBagItem(gSpecialVar_ItemId, 1);
+        }
+
         if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
             Task_FadeAndCloseBagMenu(taskId);
         else
             CloseBattlePyramidBag(taskId);
         break;
+
     case BALL_THROW_UNABLE_TWO_MONS:
         if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
             DisplayItemMessage(taskId, FONT_NORMAL, sText_CantThrowPokeBall_TwoMons, CloseItemMessage);
         else
             DisplayItemMessageInBattlePyramid(taskId, sText_CantThrowPokeBall_TwoMons, Task_CloseBattlePyramidBagMessage);
         break;
+
     case BALL_THROW_UNABLE_NO_ROOM:
         if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
             DisplayItemMessage(taskId, FONT_NORMAL, gText_BoxFull, CloseItemMessage);
         else
             DisplayItemMessageInBattlePyramid(taskId, gText_BoxFull, Task_CloseBattlePyramidBagMessage);
         break;
+
     case BALL_THROW_UNABLE_SEMI_INVULNERABLE:
         if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
             DisplayItemMessage(taskId, FONT_NORMAL, sText_CantThrowPokeBall_SemiInvulnerable, CloseItemMessage);
         else
             DisplayItemMessageInBattlePyramid(taskId, sText_CantThrowPokeBall_SemiInvulnerable, Task_CloseBattlePyramidBagMessage);
         break;
+
     case BALL_THROW_UNABLE_DISABLED_FLAG:
         if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
             DisplayItemMessage(taskId, FONT_NORMAL, sText_CantThrowPokeBall_Disabled, CloseItemMessage);
@@ -1200,6 +1223,7 @@ void ItemUseInBattle_PokeBall(u8 taskId)
         break;
     }
 }
+
 
 static void ItemUseInBattle_ShowPartyMenu(u8 taskId)
 {
@@ -1469,11 +1493,17 @@ void Task_UseHoneyOnField(u8 taskId)
 static void ItemUseOnFieldCB_Honey(u8 taskId)
 {
     Overworld_ResetStateAfterDigEscRope();
-    RemoveBagItem(gSpecialVar_ItemId, 1);
+
+    if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+    {
+        RemoveBagItem(gSpecialVar_ItemId, 1);
+    }
+
     CopyItemName(gSpecialVar_ItemId, gStringVar2);
     StringExpandPlaceholders(gStringVar4, gText_PlayerUsedVar2);
     DisplayItemMessageOnField(taskId, gStringVar4, Task_UseHoneyOnField);
 }
+
 
 void ItemUseOutOfBattle_Honey(u8 taskId)
 {

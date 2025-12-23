@@ -15057,6 +15057,26 @@ const struct Item gItemsInfo[] =
         .iconPic = gItemIcon_PokeshiDoll,
         .iconPalette = gItemIconPalette_PokeshiDoll,
     },
+
+    // Unlimited Candy
+    [ITEM_UNLIMITED_CANDY] =
+    {
+        .name = ITEM_NAME("Unlimited Candy"),
+        .pluralName = ITEM_PLURAL_NAME("Unlimited Candies"),
+        .price = 10000, // igual que Rare Candy
+        .description = COMPOUND_STRING(
+            "Raises the level\n"
+            "of a Pokémon by\n"
+            "one. Infinite use!"),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_LEVEL_UP_ITEM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy, // mismo callback que Rare Candy
+        .effect = gItemEffect_RareCandy, // reutilizamos el efecto de Rare Candy
+        .flingPower = 30,
+        .iconPic = gItemIcon_RareCandy, // reutilizamos el ícono
+        .iconPalette = gItemIconPalette_RareCandy,
+    },
 };
 
 #undef ITEM_NAME

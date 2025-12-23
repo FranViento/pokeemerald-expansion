@@ -2498,7 +2498,9 @@ static void CB2_ApprenticeExitBagMenu(void)
 
 static void ItemMenu_GiveFavorLady(u8 taskId)
 {
-    RemoveBagItem(gSpecialVar_ItemId, 1);
+    if (gSpecialVar_ItemId != ITEM_UNLIMITED_CANDY)
+        RemoveBagItem(gSpecialVar_ItemId, 1);
+        
     gSpecialVar_Result = TRUE;
     RemoveContextWindow();
     Task_FadeAndCloseBagMenu(taskId);

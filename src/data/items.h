@@ -15095,6 +15095,23 @@ const struct Item gItemsInfo[] =
         .iconPic = gItemIcon_PokeBall,
         .iconPalette = gItemIconPalette_PokeBall,
     },
+
+    [ITEM_POKEVIAL] =
+    {
+        .name = ITEM_NAME("Pokévial"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Chute de keta\n"
+            "que parece sentar\n"
+            "muy muy bien."),
+        .importance = 1,
+        .holdEffectParam = 3,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_PokeVial,
+        .iconPic = gItemIcon_AuxPowerguard,
+        .iconPalette = gItemIconPalette_AuxPowerguard,
+    },
 };
 
 #undef ITEM_NAME

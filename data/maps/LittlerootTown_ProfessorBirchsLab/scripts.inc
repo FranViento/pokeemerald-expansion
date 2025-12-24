@@ -528,6 +528,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_MayGivePokeBalls::
 	giveitem ITEM_UNLIMITED_BALL, 1
 	giveitem ITEM_UNLIMITED_CANDY, 1
 	giveitem ITEM_POKEMON_BOX_LINK, 1
+	giveitem ITEM_POKEVIAL, 1
 	call_if_eq VAR_RESULT, FALSE, LittlerootTown_ProfessorBirchsLab_EventScript_MayNoRoomForPokeBalls
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_CatchCutePokemonWithPokeBalls, MSGBOX_DEFAULT
 	setvar VAR_RESULT, 0

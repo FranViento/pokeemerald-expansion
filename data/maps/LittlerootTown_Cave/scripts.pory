@@ -1,0 +1,62 @@
+mapscripts LittlerootTown_Cave_MapScripts {}
+
+script LittlerootTown_Cave_EventScript_Charmander {
+    
+    lockall
+    showmonpic(SPECIES_CHARMANDER, 10,3)
+    msgbox("¿Quieres elegir a Charmander?" , MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        givemon(SPECIES_CHARMANDER, 5)
+        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Has recibido a Charmander")
+            removeobject(1)
+            setflag(FLAG_UNUSED_0x020)
+            call(NicknamePartyMon)
+        }
+    elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+        playfanfare(MUS_OBTAIN_ITEM)
+        msgbox("Has recibido a Charmander")
+        removeobject(1)
+        setflag(FLAG_UNUSED_0x020)
+        call(NicknameBoxMon)
+    }   
+    else{
+        hidemonpic
+        msgbox("No tienes espacio suficiente")
+    }
+}
+else{
+    hidemonpic
+    msgbox(LittlerootTown_Cave_NotChosen)
+}
+waitmessage
+releaseall
+end
+
+}
+
+script NicknamePartyMon{
+
+    msgbox("¿Quieres ponerle un mote?" , MSGBOX_YESNO)
+    hidemonpic
+    if(var(VAR_RESULT) == YES){
+        call(Common_EventScript_GetGiftMonPartySlot)
+        call(Comnon_EventScript_NameReceivedPartyMon)
+    }
+}
+
+script NicknameBoxMon {
+
+    msgbox("¿Quieres ponerle un mote?" , MSGBOX_YESNO)
+    hidemonpic
+    if(var(VAR_RESULT) == YES){
+        call(Common_EventScript_NameReceivedBoxMon)
+    }
+    call(Common_EventScript_TrasnferredToPC)
+    
+}
+
+text LittlerootTown_Cave_NotChosen{
+    "No has escogido este Pokémon"
+}
